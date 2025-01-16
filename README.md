@@ -9,7 +9,7 @@ Clone these repos:
 
 ```
 # bash
-git clone https://github.com/sg-s/crabsort
+git clone https://github.com/ehennestad/crabsort
 git clone https://github.com/sg-s/puppeteer
 git clone https://github.com/sg-s/srinivas.gs_mtools
 ```
