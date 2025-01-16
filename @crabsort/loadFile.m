@@ -2,8 +2,9 @@
 % method that is called to load files 
 
 
-function loadFile(self,src,~)
+function loadFile(self,src,~,filename)
 
+hasFile = nargin==4;
 
 if self.verbosity > 9
     disp(mfilename)
@@ -91,8 +92,13 @@ if nargin > 1 && strcmp(src.Style ,'pushbutton') && strcmp(src.String,'Load File
     catch
     end
 
-    [file_name,path_name,filter_index] = uigetfile(allowed_file_extensions);
-
+    if hasFile
+        [path_name, file_name, ext] = fileparts(filename);
+        file_name = [file_name, ext];
+        filter_index = find(endsWith(allowed_file_extensions, ext, "IgnoreCase", true));
+    else
+        [file_name,path_name,filter_index] = uigetfile(allowed_file_extensions);
+    end
 
     if ~file_name
         return
@@ -546,9 +552,6 @@ catch err
             drawnow
         end
     end
-
-    
-
 
 end
 
